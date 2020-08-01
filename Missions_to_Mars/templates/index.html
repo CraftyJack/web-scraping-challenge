@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center" id="welcome_jumbotron">
+      <h1>Missions to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <div class="row" id="news_weather_facts_row">
+      <div class="col-md-4">
+        <div class="jumbotron">
+          <h3>Mars News!</h3>
+          <h4 class="heading">{{mars_data.news_title}}</h4>
+          <p>{{mars_data.news_p}}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="jumbotron">
+          <h3 class="heading">Mars Weather!</h3>
+          <p>{{mars_data.weather}}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="jumbotron">
+          <h3 class="heading">Mars Facts!</h3>
+          <table>{{mars_data.mars_table | safe}}</table>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="featured_image_row">
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h3>Featured Picture!</h3>
+            <img class="img-responsive" src="{{ mars_data.featured_image_url }}" alt="Mars">
+          </div>
+        </div>
+    </div>
+    <div id="hemisphere_angles">
+    {% for angle in mars_data.hemisphere_image_urls %}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron text-center">
+            <h3>{{angle.title}}</h3>
+            <img class="img-responsive" src="{{angle.url}}">
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+
